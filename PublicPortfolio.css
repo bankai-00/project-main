@@ -1,0 +1,238 @@
+.public-portfolio {
+  min-height: 100vh;
+}
+
+.portfolio-hero {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%);
+  padding: 80px 0;
+  text-align: center;
+}
+
+.dark .portfolio-hero {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(236, 72, 153, 0.25) 100%);
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-color);
+  box-shadow: var(--shadow);
+}
+
+.portfolio-hero h1 {
+  font-size: 42px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.portfolio-hero .bio {
+  font-size: 18px;
+  color: var(--text-light);
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.dark .portfolio-hero .bio {
+  color: var(--text-dark);
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.social-link {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.social-link:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.portfolio-items-section {
+  padding: 60px 0;
+}
+
+.portfolio-items-section h2 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 50px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.portfolio-grid {
+  gap: 30px;
+}
+
+.portfolio-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-10px);
+}
+
+.portfolio-image {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.portfolio-details {
+  padding: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.portfolio-details h3 {
+  font-size: 22px;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.category {
+  display: inline-block;
+  background-color: rgba(99, 102, 241, 0.1);
+  color: var(--primary-color);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  max-width: fit-content;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.technologies {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.technologies strong {
+  font-size: 12px;
+  color: var(--primary-color);
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color-light);
+  color: var(--text-light);
+  padding: 5px 10px;
+  border-radius: 16px;
+  font-size: 12px;
+}
+
+.dark .tech-tag {
+  background-color: rgba(99, 102, 241, 0.1);
+  border-color: var(--border-color-dark);
+  color: var(--text-dark);
+}
+
+.portfolio-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.portfolio-links .btn {
+  font-size: 13px;
+  padding: 8px 14px;
+}
+
+.views {
+  font-size: 12px;
+  opacity: 0.6;
+  margin: 0;
+  margin-top: auto;
+}
+
+.back-link-section {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-state p {
+  font-size: 18px;
+  color: var(--text-light);
+  opacity: 0.7;
+}
+
+.dark .empty-state p {
+  color: var(--text-dark);
+}
+
+@media (max-width: 768px) {
+  .portfolio-hero {
+    padding: 40px 0;
+  }
+
+  .portfolio-hero h1 {
+    font-size: 28px;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+
+  .portfolio-items-section h2 {
+    font-size: 24px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-image {
+    height: 200px;
+  }
+}
