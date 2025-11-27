@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortfolioHub - Neon Edition</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body { width: 100%; height: 100%; }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #000000;
+            color: #00ff88;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #000000;
+            border-bottom: 2px solid #00ff88;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+        }
+
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { color: #00ff88; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        .nav-links a:hover { text-shadow: 0 0 10px rgba(0, 255, 136, 0.8); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border-bottom: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #00ff88;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: 2px solid #00ff88;
+            background: #00ff88;
+            color: #000000;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+        }
+
+        .btn-secondary { background: #ff00ff; border-color: #ff00ff; color: #000000; }
+        .btn-secondary:hover {
+            background: transparent;
+            color: #ff00ff;
+            border-color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+        }
+
+        section { padding: 80px 0; }
+        
+        .section-title {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+
+        .features {
+            background: #000000;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #0a0a0a;
+            padding: 30px;
+            border-radius: 8px;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon { font-size: 48px; margin-bottom: 15px; }
+        .feature-card h3 { color: #00ff88; margin-bottom: 10px; }
+        .feature-card p { color: rgba(0, 255, 136, 0.7); font-size: 14px; }
+
+        .portfolio {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            background: #0a0a0a;
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .portfolio-content { padding: 20px; }
+        .portfolio-title { color: #00ff88; font-size: 18px; margin-bottom: 10px; }
+        .portfolio-desc { color: rgba(0, 255, 136, 0.7); font-size: 14px; margin-bottom: 15px; }
+
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tech-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .contact-section { background: #000000; }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #0a0a0a;
+            padding: 40px;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            border-radius: 8px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: #00ff88; font-weight: bold; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #000000;
+            border: 2px solid rgba(0, 255, 136, 0.3);
+            color: #00ff88;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        footer {
+            background: #000000;
+            border-top: 2px solid #00ff88;
+            padding: 40px 0;
+            text-align: center;
+            color: rgba(0, 255, 136, 0.7);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2) inset;
+        }
+
+        .social-links { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .social-links a { color: #00ff88; text-decoration: none; font-size: 20px; }
+
+        .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); }
+
+        .modal-content {
+            background: #0a0a0a;
+            margin: 10% auto;
+            padding: 30px;
+            border: 2px solid #00ff88;
+            border-radius: 8px;
+            max-width: 500px;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        }
+
+        .modal-content h2 { color: #00ff88; margin-bottom: 20px; }
+
+        .close-btn { color: #00ff88; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-btn:hover { text-shadow: 0 0 10px rgba(0, 255, 136, 0.8); }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border: 2px solid;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            max-width: 500px;
+        }
+
+        .alert-success { background: rgba(0, 255, 136, 0.1); color: #00ff88; border-color: #00ff88; }
+        .alert-error { background: rgba(255, 0, 85, 0.1); color: #ff0055; border-color: #ff0055; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 36px; }
+            .features-grid, .portfolio-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">🚀 PortfolioHub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn" onclick="showLogin()">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Welcome to PortfolioHub</h1>
+            <p>Showcase your work with neon-powered portfolio hosting platform</p>
+            <div class="btn-group">
+                <button class="btn" onclick="showSignup()">Get Started</button>
+                <button class="btn btn-secondary" onclick="scrollTo('#portfolio')">Explore</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>Easy Upload</h3>
+                    <p>Upload your portfolio projects with a single click</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern Design</h3>
+                    <p>Beautiful neon-themed interface that stands out</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Secure</h3>
+                    <p>Your data is protected with industry-standard security</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Share Anywhere</h3>
+                    <p>Generate shareable links for your public portfolio</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized performance for smooth browsing experience</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Responsive</h3>
+                    <p>Works perfectly on all devices and screen sizes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🎯</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Project 1</div>
+                        <div class="portfolio-desc">Amazing web application built with modern technologies</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">💡</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Project 2</div>
+                        <div class="portfolio-desc">Innovative solution for real-world problems</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🌟</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Project 3</div>
+                        <div class="portfolio-desc">Cutting-edge design with seamless functionality</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🚀</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Project 4</div>
+                        <div class="portfolio-desc">Performance-optimized mobile application</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Supabase</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">🎨</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Project 5</div>
+                        <div class="portfolio-desc">Stunning UI/UX design implementation</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Svelte</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">GraphQL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">⚙️</div>
+                    <div class="portfolio-content">
+                        <div class="portfolio-title">Project 6</div>
+                        <div class="portfolio-desc">Enterprise-scale backend infrastructure</div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <form class="contact-form" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject</label>
+                    <input type="text" id="subject" required>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div>© 2025 PortfolioHub - Neon Edition. All rights reserved.</div>
+            <div class="social-links">
+                <a href="#">🐙</a>
+                <a href="#">💼</a>
+                <a href="#">🐦</a>
+                <a href="#">✉️</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('loginModal'">&times;</span>
+            <h2>Login</h2>
+            <form onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('signupModal'">&times;</span>
+            <h2>Sign Up</h2>
+            <form onsubmit="signup(event)">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showAlert(msg) {
+            var alert = document.createElement('div');
+            alert.className = 'alert alert-success';
+            alert.textContent = msg;
+            document.body.appendChild(alert);
+            setTimeout(function() { alert.remove(); }, 3000);
+        }
+
+        function showLogin() { document.getElementById('loginModal').style.display = 'block'; }
+        function showSignup() { document.getElementById('signupModal').style.display = 'block'; }
+        
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        
+        function scrollTo(id) {
+            var el = document.querySelector(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function login(e) {
+            e.preventDefault();
+            showAlert('Login successful!');
+            closeModal('loginModal');
+            e.target.reset();
+        }
+        
+        function signup(e) {
+            e.preventDefault();
+            showAlert('Account created successfully!');
+            closeModal('signupModal');
+            e.target.reset();
+        }
+        
+        function submitForm(e) {
+            e.preventDefault();
+            var name = document.getElementById('name').value;
+            showAlert('Thank you ' + name + '! Message sent successfully.');
+            e.target.reset();
+        }
+        
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
